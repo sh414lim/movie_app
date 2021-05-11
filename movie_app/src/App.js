@@ -1,20 +1,29 @@
-import React from 'react';
-import {HashRouter,Route} from 'react-router-dom';
-import About from './routes/About';
-import Home from './routes/Home';
-import Detail from './routes/Detail';
-import Navigation from './routes/Navigation';
-import "./App.css";
+import React from "react";
+import PropTypes from "prop-types";
 
-function App(){
-  return(
-  <HashRouter>
-    <Navigation/>
-    <Route path="/" exact={true} component={Home}/>
-    <Route path="/about" component={About}/>
-    <Route path="/movie-detail" component={Detail}/>
-  </HashRouter>
-  );
+class App extends React.Component{
+  state={
+    count:0
+  }
+
+  add=()=>{
+   this.setState(current=>({count:current.count+1}));
+  }
+  minus=()=>{
+    this.setState(current=>({count:current.count-1}));
+  }
+  
+  render(){
+    const{count}=this.state
+    return(
+      <>
+      <h1> Count {count}</h1>
+      <button onClick={this.add}>UP</button>
+      <button onClick={this.minus}>DOWN</button>
+      
+      </>
+    )
+  }
 }
 
 export default App;
